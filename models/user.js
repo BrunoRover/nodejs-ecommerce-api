@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const productsSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     name: String,
     image: String,
     countInStock: {
@@ -8,4 +8,5 @@ const productsSchema = mongoose.Schema({
         required: true
     }
 })
-exports.Product = mongoose.model("products", productsSchema)
+
+exports.User = mongoose.model('User', userSchema);
