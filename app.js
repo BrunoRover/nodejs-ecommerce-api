@@ -1,10 +1,12 @@
-const express = require("express")
-const app = express()
+const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const cors = require('cors')
 const mongoose = require('mongoose');
-require("dotenv/config")
+const cors = require('cors');
+require('dotenv/config');
+const authJwt = require('./helpers/jwt');
+const errorHandler = require('./helpers/error-handler');
 
 app.use(cors)
 app.use('*', cors())
@@ -12,6 +14,8 @@ app.use('*', cors())
 //middleware
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
+app.use(authJwt());
+app.use(errorHandler);
 
 //Router
 const categoriesRoutes = require('./routers/categories');
